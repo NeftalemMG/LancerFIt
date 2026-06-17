@@ -53,18 +53,25 @@ export default function LeaderboardScreen() {
         {order.map((di, slot) => {
           const e = top3[di];
           const first = di === 0;
+          // 0 -> gold, 1 -> silver, 2 -> bronze (matte, theme-tuned)
+          const metal = di === 0 ? colors.medalGold : di === 1 ? colors.medalSilver : colors.medalBronze;
+          const metalDim = di === 0 ? colors.medalGoldDim : di === 1 ? colors.medalSilverDim : colors.medalBronzeDim;
           return (
             <View key={slot} style={styles.pcol}>
               {first && <Crown size={24} color={colors.gold} />}
-              <View style={[styles.pav, first && styles.pavFirst]}>
+              <View style={[styles.pav, { borderColor: metal + '99', backgroundColor: metal + '1F' }, first && { width: 64, height: 64 }]}>
                 <KnightAvatar variant={e.av} plume={fcol(e.f)} size={first ? 52 : 42} />
                 {!grp && <View style={styles.flBadge}><Flag code={e.fl} width={16} /></View>}
               </View>
               <Text style={styles.pname} numberOfLines={1}>{e.n}</Text>
               <Text style={styles.pxp}>{fmt(e.xp)} XP</Text>
-              <View style={[styles.plinth, { height: heights[slot] }, first && styles.plinthFirst]}>
-                <Text style={[styles.plinthNum, first && { color: colors.goldInk }]}>{di + 1}</Text>
-              </View>
+              <LinearGradient
+                colors={[metal + '3A', metalDim + '20']}
+                start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }}
+                style={[styles.plinth, { height: heights[slot], borderColor: metal + '66' }]}
+              >
+                <Text style={[styles.plinthNum, { color: metal }]}>{di + 1}</Text>
+              </LinearGradient>
             </View>
           );
         })}
