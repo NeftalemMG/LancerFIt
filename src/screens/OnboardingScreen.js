@@ -76,9 +76,9 @@ export default function OnboardingScreen({ onEnter }) {
                 <View style={[styles.crest, { borderColor: f.c, backgroundColor: sel ? tint(f.c, 0.16) : 'transparent' }]}>
                   <FacultyCrest id={f.id} color={f.c} size={21} />
                 </View>
-                <View>
-                  <Text style={styles.fname}>{f.name}</Text>
-                  <Text style={styles.ftag}>{f.short}</Text>
+                <View style={{ flex: 10, minWidth: 0 }}>
+                  <Text style={styles.fname} numberOfLines={2}>{f.name}</Text>
+                  <Text style={styles.ftag} numberOfLines={1}>{f.short}</Text>
                 </View>
               </PressScale>
             );
@@ -134,13 +134,13 @@ const styles = StyleSheet.create({
 
   facGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', rowGap: 10 },
   fac: {
-    width: '48.5%', gap: 10, paddingHorizontal: 14, paddingTop: 14, paddingBottom: 13,
-    borderRadius: 16, borderWidth: 1, borderColor: colors.cardLine, backgroundColor: colors.card, overflow: 'hidden',
+    width: '100%', gap: 10, paddingHorizontal: 14, paddingTop: 14, paddingBottom: 13,
+    borderRadius: 16, borderWidth: 1, borderColor: colors.cardLine, backgroundColor: colors.card, overflow: 'hidden', flexShrink: 1,
   },
   tick: { position: 'absolute', top: 12, right: 12, width: 20, height: 20, borderRadius: 99, alignItems: 'center', justifyContent: 'center', zIndex: 2 },
   crest: { width: 38, height: 38, borderRadius: 11, alignItems: 'center', justifyContent: 'center', borderWidth: 1 },
-  fname: { fontFamily: disp.bold, fontSize: 13.5, letterSpacing: -0.1, color: colors.text },
-  ftag: { marginTop: 3, fontFamily: body.medium, fontSize: 10.5, color: colors.text3 },
+  fname: { fontFamily: disp.bold, fontSize: 11.5, letterSpacing: -0.1, color: colors.text, flexShrink: 1 },
+  ftag: { marginTop: 3, fontFamily: body.medium, fontSize: 10.5, color: colors.text3, flexShrink: 1, },
 
   field: {
     flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, height: 54,
