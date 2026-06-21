@@ -1,16 +1,13 @@
-// ============================================================
 // LANCERFIT · WINDSOR BLUE EDITION — design tokens
-// Ported 1:1 from the prototype's CSS custom properties.
 // Deep Windsor navy field, warm matte ochre, knight crests.
-// ============================================================
 
 export const colors = {
-  // deep blue field
-  bg0: '#06243F', // darkest base
-  bg1: '#0A335A', // mid navy
-  bg2: '#0E4072', // lifted navy
-  fieldWarm: '#123A5E', // faint warm wash anchor
-  appBg: '#0B2742', // body background behind the phone
+  // deep blue field — saturated Windsor navy
+  bg0: '#031b31', // darkest base
+  bg1: '#022140', 
+  bg2: '#042b55', 
+  fieldWarm: '#062b50', 
+  appBg: '#0A3158', // body background behind the phone
 
   // translucent surfaces over the navy
   card: 'rgba(255,255,255,0.055)',
@@ -29,12 +26,23 @@ export const colors = {
   blueSoft: 'rgba(47,123,196,0.18)',
   blueLine: 'rgba(74,147,216,0.34)',
 
-  // subtle ochre (warm, matte — never shiny)
-  gold: '#D8A94A',
-  goldDim: '#B98E38',
-  goldSoft: 'rgba(216,169,74,0.14)',
-  goldLine: 'rgba(216,169,74,0.32)',
-  goldInk: '#241A05', // text that sits on gold
+  // varsity amber — warmer + brighter to match the date-pill yellow (#FFD157),
+  // still matte (no gloss). gold = highlight, goldDim = pressed/darker stop.
+  gold: '#FFD157',
+  goldDim: '#E0A838',
+  goldSoft: 'rgba(255,209,87,0.14)',
+  goldLine: 'rgba(255,209,87,0.34)',
+  goldInk: '#2A1E04', // text that sits on gold
+
+  // leaderboard podium metals — matte, theme-tuned (no shine):
+  // 1st leans into the varsity amber/gold, 2nd a cool steel silver,
+  // 3rd a warm bronze that still reads against the navy.
+  medalGold: '#FFD157',
+  medalGoldDim: '#D9A638',
+  medalSilver: '#C6CDD8',
+  medalSilverDim: '#9AA6B5',
+  medalBronze: '#C8884E',
+  medalBronzeDim: '#9A6536',
 
   green: '#4FB587',
   greenSoft: 'rgba(79,181,135,0.16)',
