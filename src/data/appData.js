@@ -53,10 +53,10 @@ export const CHALLENGES = [
 
 export const LB = {
   friends: [
-    { n: 'Faisal A.',  f: 'eng', xp: 2140, av: 1, fl: 'pk' },
+    { n: 'Kanade U.',  f: 'eng', xp: 2140, av: 1, fl: 'pk' },
     { n: 'Neftalem',   f: 'cs',  xp: 1980, av: 0, fl: 'et', you: true },
-    { n: 'Utkarsh K.', f: 'cs',  xp: 1820, av: 3, fl: 'in' },
-    { n: 'Maya R.',    f: 'kin', xp: 1540, av: 4, fl: 'ca' },
+    { n: 'Arabs', f: 'cs',  xp: 1820, av: 3, fl: 'in' },
+    { n: 'Fady P.',    f: 'kin', xp: 1540, av: 4, fl: 'ca' },
     { n: 'Dario L.',   f: 'sci', xp: 1390, av: 2, fl: 'br' },
     { n: 'Priya S.',   f: 'nur', xp: 1210, av: 5, fl: 'in' },
     { n: 'Jonah T.',   f: 'biz', xp: 980,  av: 1, fl: 'ca' },
@@ -70,12 +70,12 @@ export const LB = {
     { n: 'Nursing',           f: 'nur', xp: 30880, av: 5, fl: 'ca', grp: true },
   ],
   campus: [
-    { n: 'K. Osei',     f: 'kin', xp: 3320, av: 4, fl: 'ng' },
-    { n: 'S. Tremblay', f: 'eng', xp: 3105, av: 2, fl: 'fr' },
-    { n: 'A. Haddad',   f: 'sci', xp: 2960, av: 5, fl: 'ca' },
+    { n: 'F. Phillips',     f: 'kin', xp: 3320, av: 4, fl: 'ng' },
+    { n: 'Sandra O.', f: 'eng', xp: 3105, av: 2, fl: 'fr' },
+    { n: 'Mike M.',   f: 'sci', xp: 2960, av: 5, fl: 'ca' },
     { n: 'L. Nguyen',   f: 'biz', xp: 2810, av: 3, fl: 'cn' },
     { n: 'Faisal A.',   f: 'eng', xp: 2140, av: 1, fl: 'pk' },
-    { n: 'Neftalem',    f: 'cs',  xp: 1980, av: 0, fl: 'et', you: true, rank: 23 },
+    { n: 'Pogba P.',    f: 'cs',  xp: 1980, av: 0, fl: 'et', you: true, rank: 23 },
   ],
 };
 
