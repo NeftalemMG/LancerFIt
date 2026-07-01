@@ -17,26 +17,6 @@ import ProfileScreen from '../screens/ProfileScreen';
 import TabBar from './TabBar';
 import { Toast, Sheet, LogWorkoutSheet } from './Overlays';
 
-function StatusBarRow() {
-  return (
-    <View style={styles.statusbar}>
-      <Text style={styles.clock}>9:41</Text>
-      <View style={styles.sig}>
-        <Svg width={17} height={12} viewBox="0 0 17 12">
-          <Rect x={0} y={7} width={3} height={5} rx={1} fill={colors.text} />
-          <Rect x={4.5} y={4.5} width={3} height={7.5} rx={1} fill={colors.text} />
-          <Rect x={9} y={2} width={3} height={10} rx={1} fill={colors.text} />
-          <Rect x={13.5} y={0} width={3} height={12} rx={1} fill={colors.text} />
-        </Svg>
-        <Svg width={22} height={12} viewBox="0 0 24 13">
-          <Rect x={1} y={1} width={20} height={11} rx={3} stroke={colors.text} strokeOpacity={0.5} strokeWidth={1.2} fill="none" />
-          <Rect x={2.6} y={2.6} width={15} height={7.8} rx={1.6} fill={colors.text} />
-          <Rect x={22} y={4} width={1.6} height={5} rx={1} fill={colors.text} fillOpacity={0.5} />
-        </Svg>
-      </View>
-    </View>
-  );
-}
 
 export default function AppShell() {
   const { addXP, toast, openSheet, closeSheet, updatePlayer } = useApp();
@@ -103,7 +83,6 @@ export default function AppShell() {
       />
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-        {screen !== 'onboard' && <StatusBarRow />}
         <View style={{ flex: 1 }}>{renderScreen()}</View>
       </SafeAreaView>
 
