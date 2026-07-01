@@ -39,11 +39,11 @@ export default function LeaderboardScreen() {
       {/* segmented control */}
       <View style={styles.seg} onLayout={(e) => setSegWidth(e.nativeEvent.layout.width)}>
         <Animated.View style={[styles.segPill, { width: segWidth ? (segWidth - 8) / 3 : 0, transform: [{ translateX: pillX }] }]}>
-          <LinearGradient colors={[colors.blue2, colors.blue]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill} />
+          <LinearGradient colors={[colors.gold, colors.goldDim]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill} />
         </Animated.View>
         {TABS.map((t) => (
           <Pressable key={t} style={styles.segBtn} onPress={() => setTab(t)}>
-            <Text style={[styles.segText, tab === t && { color: '#fff' }]}>{TAB_LABELS[t]}</Text>
+            <Text style={[styles.segText, tab === t && { color: '#2A1E04' }]}>{TAB_LABELS[t]}</Text>
           </Pressable>
         ))}
       </View>
