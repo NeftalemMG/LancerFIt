@@ -3,8 +3,8 @@ import Svg, { Path, Circle, Rect, Line, Ellipse, G } from 'react-native-svg';
 
 // 
 // SPORT ICONS — custom, hand-drawn monoline glyphs for the
-// Log Activity flow. Deliberately NOT generic Lucide icons:
-// each sport has its own silhouette so the catalog reads as a
+// Log Activity flow.
+// Each sport has its own silhouette so the catalog reads as a
 // crafted set. Every icon takes { size, color, strokeWidth }.
 //
 // Convention: stroke-based, round caps/joins, drawn on a 24x24
