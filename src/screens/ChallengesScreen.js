@@ -92,7 +92,7 @@ function DailyQuestRow({ q, onPress, onClaim }) {
     <PressScale onPress={onPress} style={{ marginBottom: 10 }}>
       <Card style={styles.quest}>
         <View style={[styles.qicon, q.gold ? styles.qiconGold : null]}>
-          <QuestGlyph name={q.icon} color={questIconColor[q.icon] || colors.blue2} size={22} />
+          <QuestGlyph name={q.icon} color={questIconColor[q.icon] || colors.gold} size={22} />
         </View>
         <View style={{ flex: 1, minWidth: 0 }}>
           <Text style={styles.qTitle}>{q.title}</Text>

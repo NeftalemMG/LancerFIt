@@ -31,7 +31,7 @@ function QuestRow({ q, onPress, onClaim }) {
           <Text style={styles.qTitle}>{q.title}</Text>
           <Text style={styles.qSub}>{q.sub}</Text>
           <View style={{ marginTop: 9 }}>
-            <ProgressBar pct={(q.cur / q.max) * 100} height={5} fillColor={done ? colors.green : colors.blue2} />
+            <ProgressBar pct={(q.cur / q.max) * 100} height={5} fillColor={done ? colors.green : colors.gold} />
           </View>
         </View>
         {done && !q.claimed ? (
@@ -119,11 +119,11 @@ export default function HomeScreen({ goToQuests }) {
         </View>
         <PressScale onPress={checkIn}>
           <LinearGradient
-            colors={player.checkedIn ? ['#5cc796', colors.green] : [colors.blue2, colors.blue]}
+            colors={player.checkedIn ? ['#5cc796', colors.green] : [colors.gold, colors.goldDim]}
             start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }}
             style={styles.scanBtn}
           >
-            {player.checkedIn ? <CheckIcon size={24} color="#fff" strokeWidth={2.6} /> : <ScanIcon size={22} color="#fff" strokeWidth={2.2} />}
+            {player.checkedIn ? <CheckIcon size={24} color="#fff" strokeWidth={2.6} /> : <ScanIcon size={22} color="#000000" strokeWidth={2.2} />}
             <Text style={styles.scanLbl}>{player.checkedIn ? 'Done' : 'Check\nin'}</Text>
           </LinearGradient>
         </PressScale>
