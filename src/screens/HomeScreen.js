@@ -23,7 +23,7 @@ function QuestRow({ q, onPress, onClaim }) {
   const done = q.cur >= q.max;
   return (
     <PressScale onPress={onPress} style={{ marginBottom: 10 }}>
-      <Card style={[styles.quest, q.claimed && { opacity: 0.6 }]}>
+      <Card style={[styles.quest, styles.questGold, q.claimed && { opacity: 0.6 }]}>
         <View style={[styles.qicon, q.gold ? styles.qiconGold : null]}>
           <QuestGlyph name={q.icon} color={questIconColor[q.icon] || colors.blue2} size={22} />
         </View>
@@ -198,6 +198,7 @@ const styles = StyleSheet.create({
   quest: { flexDirection: 'row', alignItems: 'center', gap: 13, paddingVertical: 14, paddingHorizontal: 15, borderRadius: radius.md },
   qicon: { width: 44, height: 44, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.blueSoft, borderWidth: 1, borderColor: colors.blueLine },
   qiconGold: { backgroundColor: colors.goldSoft, borderColor: colors.goldLine },
+  questGold: { borderColor: colors.goldLine },
   qTitle: { fontFamily: disp.semibold, fontSize: 14.5, letterSpacing: -0.1, color: colors.text },
   qSub: { marginTop: 3, fontFamily: body.regular, fontSize: 12, lineHeight: 16, color: colors.text2 },
   xpTag: { fontFamily: disp.bold, fontSize: 12, color: colors.gold },
