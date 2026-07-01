@@ -1,8 +1,6 @@
-// ============================================================
+// 
 // STATIC DATA — ported verbatim from the prototype's <script>.
-// The backend teammate will eventually replace these with API
-// responses; the shapes here are the contract to build against.
-// ============================================================
+// 
 
 export const FACULTIES = [
   { id: 'cs',  name: 'Computer Science', short: 'Code & systems',   c: '#4A93D8' },
