@@ -2,12 +2,12 @@
 // Deep Windsor navy field, warm matte ochre, knight crests.
 
 export const colors = {
-  // deep blue field — saturated Windsor navy
-  bg0: '#031b31', // darkest base
-  bg1: '#022140', 
-  bg2: '#042b55', 
-  fieldWarm: '#062b50', 
-  appBg: '#0A3158', // body background behind the phone
+
+  bg0: '#0C1530', // darkest base - deep indigo
+  bg1: '#13214D', // matches the Figma card navy
+  bg2: '#19294F',
+  fieldWarm: '#172murderError', // -> use '#16244C'
+  appBg: '#0C1530', // body background behind the phone
 
   // translucent surfaces over the navy
   card: 'rgba(255,255,255,0.055)',
