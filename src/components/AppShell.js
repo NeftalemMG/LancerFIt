@@ -13,9 +13,11 @@ import ChallengesScreen from '../screens/ChallengesScreen';
 import LeaderboardScreen from '../screens/LeaderboardScreen';
 import BadgesScreen from '../screens/BadgesScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import LogScreen from '../screens/LogScreen';
 
 import TabBar from './TabBar';
-import { Toast, Sheet, LogWorkoutSheet } from './Overlays';
+import { Toast, Sheet } from './Overlays';
+import LogActivitySheet from './LogActivitySheet';
 
 
 export default function AppShell() {
@@ -32,21 +34,6 @@ export default function AppShell() {
 
   const navigate = (key) => setScreen(key);
 
-  const openLog = () => {
-    openSheet(
-      <LogWorkoutSheet
-        onDone={(mode) => {
-          closeSheet();
-          setScreen('home');
-          setTimeout(() => {
-            if (mode === 'manual') { addXP(50); toast('Workout logged · +50 XP'); }
-            else { addXP(30); toast('Synced from wearable · +30 XP'); }
-          }, 260);
-        }}
-      />
-    );
-  };
-
   const renderScreen = () => {
     switch (screen) {
       case 'onboard':
@@ -55,6 +42,8 @@ export default function AppShell() {
         return <HomeScreen goToQuests={() => navigate('quests')} />;
       case 'quests':
         return <ChallengesScreen />;
+      case 'log':
+        return <LogScreen />;
       case 'board':
         return <LeaderboardScreen />;
       case 'badges':
