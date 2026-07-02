@@ -12,19 +12,19 @@ export default function BadgeSheet({ badge: b }) {
       <Badge badge={b} size={112} />
       <Text style={styles.h3}>{b.name}</Text>
       <Text style={styles.desc}>{b.desc}</Text>
-      {b.earned ? (
+      {b.isComplete ? (
         <View style={styles.earnedTag}>
           <Svg width={13} height={13} viewBox="0 0 24 24">
             <Path d="M5 12.5l5 5L19 6.5" fill="none" stroke={colors.green} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
           </Svg>
-          <Text style={styles.earnedText}>Earned · {b.date}</Text>
+          <Text style={styles.earnedText}>Earned{b.completedAt ? ` · ${b.completedAt}` : ''}</Text>
         </View>
       ) : (
         <>
           <View style={{ alignSelf: 'stretch', marginTop: 18 }}>
-            <ProgressBar pct={(b.cur / b.max) * 100} height={8} fillColor={colors.gold} />
+            <ProgressBar pct={(b.progress / b.completionCriteria) * 100} height={8} fillColor={colors.gold} />
           </View>
-          <Text style={styles.barLabel}>{b.cur} / {b.max}</Text>
+          <Text style={styles.barLabel}>{b.progress} / {b.completionCriteria}</Text>
           <View style={[styles.earnedTag, styles.lockedTag]}>
             <Svg width={12} height={12} viewBox="0 0 24 24">
               <Path d="M5 11h14v9H5z" fill="none" stroke={colors.text3} strokeWidth={2.4} />

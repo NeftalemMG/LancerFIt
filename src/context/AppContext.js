@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useRef, useState, useCallback } from 'react';
+import React, { createContext, useContext, useRef, useState, useCallback, useMemo } from 'react';
 import { Animated, Easing } from 'react-native';
-import { initialState, initialQuests, CHALLENGES } from '../data/appData';
+import { initialState, initialQuests, CHALLENGES, BADGES, USER_BADGES } from '../data/appData';
 
 // ============================================================
 // AppContext — the single source of truth for player progress,
@@ -17,6 +17,33 @@ export function AppProvider({ children }) {
   const [quests, setQuests] = useState(() => initialQuests.map((q) => ({ ...q })));
   const [challenges, setChallenges] = useState(() => CHALLENGES.map((c) => ({ ...c })));
   const [joinedChals, setJoinedChals] = useState({});
+  const [userBadges, setUserBadges] = useState(USER_BADGES);
+
+  const displayBadges = useMemo(() => {
+    const rowMap = {};
+    userBadges.forEach((ub) => { rowMap[ub.badgeID] = ub; });
+
+    const earnedIDs = new Set(
+      BADGES.filter((b) => (rowMap[b.id]?.progress ?? 0) >= b.completionCriteria).map((b) => b.id)
+    );
+
+    const blockedIDs = new Set();
+    BADGES.forEach((b) => {
+      if (earnedIDs.has(b.id)) b.excludes.forEach((id) => blockedIDs.add(id));
+    });
+
+    const enriched = BADGES.map((b) => {
+      const progress = rowMap[b.id]?.progress ?? 0;
+      const isComplete = progress >= b.completionCriteria;
+      return { ...b, progress, isComplete, isBlocked: blockedIDs.has(b.id), completedAt: rowMap[b.id]?.completedAt };
+    });
+
+    const visible = enriched.filter((b) => !b.isBlocked && (!b.secret || b.isComplete));
+    const complete = visible.filter((b) => b.isComplete);
+    const inProgress = visible.filter((b) => !b.isComplete && b.progress > 0);
+    const notStarted = visible.filter((b) => !b.isComplete && b.progress === 0);
+    return [...complete, ...inProgress, ...notStarted];
+  }, [userBadges]);
 
   // ---- Toast ----
   const [toastMsg, setToastMsg] = useState('');
@@ -153,6 +180,7 @@ export function AppProvider({ children }) {
     addXP, checkIn,
     toast, toastMsg, toastY, toastOpacity,
     sheet, openSheet, closeSheet,
+    displayBadges, userBadges, setUserBadges,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

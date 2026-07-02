@@ -28,7 +28,10 @@ function Toggle({ on }) {
 }
 
 export default function ProfileScreen({ goToBadges, goToOnboarding }) {
-  const { player, toast } = useApp();
+  const { player, toast, displayBadges } = useApp();
+  const earnedCount = displayBadges.filter((b) => b.isComplete).length;
+  const totalCount = displayBadges.length;
+  const inProgressCount = displayBadges.filter((b) => !b.isComplete && b.progress > 0).length;
   const [settings, setSettings] = React.useState(SETTINGS);
 
   // Progress ring math (r=57, circumference ~358.1).
@@ -103,7 +106,7 @@ export default function ProfileScreen({ goToBadges, goToOnboarding }) {
           </View>
           <View style={{ flex: 1 }}>
             <Text style={styles.setBadgesTitle}>Your badges</Text>
-            <Text style={styles.setBadgesSub}>9 of 12 earned · 3 in progress</Text>
+            <Text style={styles.setBadgesSub}>{earnedCount} of {totalCount} earned · {inProgressCount} in progress</Text>
           </View>
           <ChevronRight size={16} color={colors.gold} strokeWidth={2.4} />
         </View>

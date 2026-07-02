@@ -10,3 +10,7 @@ npm-debug.*
 ios/
 android/
 *.orig.*
+
+# Local dev notes (not for version control)
+CODEBASE_MAP.md
+BADGE_SYSTEM_CHANGES.md
