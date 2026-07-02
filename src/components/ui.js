@@ -14,7 +14,10 @@ export function Card({ style, children, ...rest }) {
 }
 
 // Pressable that scales to 0.97 on press, matching `.press:active`.
-export function PressScale({ children, style, onPress, scaleTo = 0.97, disabled, ...rest }) {
+// IMPORTANT: layout width/flex must live on the OUTER Pressable, not the
+// inner animated view, or a % width collapses to content width. Pass
+// sizing via `wrapStyle`; keep visual styling (padding, bg, radius) in `style`.
+export function PressScale({ children, style, wrapStyle, onPress, scaleTo = 0.97, disabled, ...rest }) {
   const scale = useRef(new Animated.Value(1)).current;
   const to = (v) =>
     Animated.spring(scale, { toValue: v, useNativeDriver: true, speed: 40, bounciness: 0 }).start();
@@ -23,6 +26,7 @@ export function PressScale({ children, style, onPress, scaleTo = 0.97, disabled,
       onPressIn={() => !disabled && to(scaleTo)}
       onPressOut={() => to(1)}
       onPress={disabled ? undefined : onPress}
+      style={wrapStyle}
       {...rest}
     >
       <Animated.View style={[{ transform: [{ scale }] }, style]}>{children}</Animated.View>
