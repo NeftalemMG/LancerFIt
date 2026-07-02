@@ -7,6 +7,9 @@ import { colors } from '../theme/tokens';
 import { disp } from '../theme/typography';
 import { useApp } from '../context/AppContext';
 
+import SignInScreen from '../screens/SignInScreen';
+import SignUpScreen from '../screens/SignUpScreen';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import OnboardingScreen from '../screens/OnboardingScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ChallengesScreen from '../screens/ChallengesScreen';
@@ -20,8 +23,27 @@ import { Toast, Sheet, LogWorkoutSheet } from './Overlays';
 
 export default function AppShell() {
   const { addXP, toast, openSheet, closeSheet, updatePlayer } = useApp();
-  const [screen, setScreen] = useState('onboard');
+  const [screen, setScreen] = useState('signin');
   const [tabbarVisible, setTabbarVisible] = useState(false);
+
+  const goToAuth = (key) => {
+    setScreen(key);
+    setTabbarVisible(false);
+  };
+
+  const startOnboarding = (name) => {
+    updatePlayer({ name });
+    setScreen('onboard');
+    setTabbarVisible(false);
+  };
+
+  const enterFromSignIn = (response) => {
+    const signedInName = response?.user?.name || [response?.user?.firstName, response?.user?.lastName].filter(Boolean).join(' ') || 'Lancer';
+    updatePlayer({ name: signedInName });
+    setScreen('home');
+    setTabbarVisible(true);
+    setTimeout(() => toast(`Welcome back, ${signedInName}`), 520);
+  };
 
   // Onboarding -> Home, reveal tab bar.
   const enterApp = (name) => {
@@ -49,6 +71,18 @@ export default function AppShell() {
 
   const renderScreen = () => {
     switch (screen) {
+      case 'signin':
+        return (
+          <SignInScreen
+            onSignInSuccess={enterFromSignIn}
+            goToSignUp={() => goToAuth('signup')}
+            goToForgotPassword={() => goToAuth('forgot')}
+          />
+        );
+      case 'signup':
+        return <SignUpScreen onSignUpSuccess={(response) => startOnboarding(response?.user?.name || 'Lancer')} goToSignIn={() => goToAuth('signin')} />;
+      case 'forgot':
+        return <ForgotPasswordScreen goToSignIn={() => goToAuth('signin')} />;
       case 'onboard':
         return <OnboardingScreen onEnter={enterApp} />;
       case 'home':
