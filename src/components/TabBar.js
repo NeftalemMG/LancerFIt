@@ -10,6 +10,7 @@ const TABS = [
   { key: 'home', label: 'Home', Icon: HomeIcon },
   { key: 'quests', label: 'Challenges', Icon: ChallengesIcon },
 ];
+
 const TABS_RIGHT = [
   { key: 'board', label: 'Ranks', Icon: RanksIcon },
   { key: 'profile', label: 'Profile', Icon: ProfileIcon },
@@ -27,6 +28,7 @@ function Tab({ tab, active, onPress }) {
 }
 
 export default function TabBar({ active, onNavigate, onLog }) {
+  const logActive = active === 'log';
   return (
     <View style={styles.bar}>
       {TABS.map((t) => (
@@ -34,7 +36,11 @@ export default function TabBar({ active, onNavigate, onLog }) {
       ))}
 
       <PressScale onPress={onLog} style={styles.logWrap} scaleTo={0.94}>
-        <LinearGradient colors={[colors.gold, colors.goldDim]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={styles.fab}>
+        <LinearGradient
+          colors={logActive ? [colors.gold, colors.gold] : [colors.gold, colors.goldDim]}
+          start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }}
+          style={[styles.fab, logActive && styles.fabActive]}
+        >
           <PlusIcon size={26} color={colors.goldInk} strokeWidth={2.6} />
         </LinearGradient>
       </PressScale>
@@ -64,4 +70,5 @@ const styles = StyleSheet.create({
     ...shadow.accent('rgba(216,169,74,0.7)'),
     borderWidth: 5, borderColor: 'rgba(8,38,66,0.6)',
   },
+  fabActive: { borderColor: colors.gold + '55' },
 });
