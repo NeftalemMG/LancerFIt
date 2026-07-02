@@ -13,10 +13,10 @@ import ChallengesScreen from '../screens/ChallengesScreen';
 import LeaderboardScreen from '../screens/LeaderboardScreen';
 import BadgesScreen from '../screens/BadgesScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import LogScreen from '../screens/LogScreen';
 
 import TabBar from './TabBar';
-import { Toast, Sheet, LogWorkoutSheet } from './Overlays';
-
+import { Toast, Sheet } from './Overlays';
 
 export default function AppShell() {
   const { addXP, toast, openSheet, closeSheet, updatePlayer } = useApp();
@@ -32,20 +32,7 @@ export default function AppShell() {
 
   const navigate = (key) => setScreen(key);
 
-  const openLog = () => {
-    openSheet(
-      <LogWorkoutSheet
-        onDone={(mode) => {
-          closeSheet();
-          setScreen('home');
-          setTimeout(() => {
-            if (mode === 'manual') { addXP(50); toast('Workout logged · +50 XP'); }
-            else { addXP(30); toast('Synced from wearable · +30 XP'); }
-          }, 260);
-        }}
-      />
-    );
-  };
+  const openLog = () => setScreen('log');
 
   const renderScreen = () => {
     switch (screen) {
@@ -55,6 +42,8 @@ export default function AppShell() {
         return <HomeScreen goToQuests={() => navigate('quests')} />;
       case 'quests':
         return <ChallengesScreen />;
+      case 'log':
+        return <LogScreen />;
       case 'board':
         return <LeaderboardScreen />;
       case 'badges':
@@ -77,12 +66,13 @@ export default function AppShell() {
   return (
     <View style={styles.phone}>
       <LinearGradient
-        colors={[colors.bg1, colors.bg0, '#05203A']}
+        colors={[colors.bg1, colors.bg0, colors.bg0]}
         locations={[0, 0.62, 1]}
         style={StyleSheet.absoluteFill}
       />
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+        {/* {screen !== 'onboard' && <StatusBarRow />} */}
         <View style={{ flex: 1 }}>{renderScreen()}</View>
       </SafeAreaView>
 
